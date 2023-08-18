@@ -1,10 +1,13 @@
 {
   "name": "replace-package",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "replace your legacy package",
   "main": "build/index.js",
   "bin": "./bin/index.js",
   "module": "build/index.js",
+  "files": [
+    "build"
+  ],
   "scripts": {
     "build": "rm -rf build && tsc -b ./tsconfig.json",
     "build:w": "tsc -b ./tsconfig.json -w",

@@ -13,3 +13,9 @@ All notable changes to this project will be documented in this file.
 ### Fixed
 
 - 🔧 exit after check config error
+
+## 0.0.3
+
+### Fixed
+
+- 🔧 rename only import name changed

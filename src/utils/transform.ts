@@ -99,8 +99,7 @@ export const createImportDeclWithProp = (
     [
       j.importSpecifier(
         j.identifier(name),
-        // why???
-        j.identifier(`${local} `)
+        j.identifier(local)
       )
     ],
     j.literal(packName)

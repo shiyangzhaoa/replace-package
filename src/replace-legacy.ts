@@ -137,6 +137,7 @@ export const replaceLegacy = (
 
       // insert before first
       legacyImportDeclarations.at(-1)?.insertBefore(importDefaultDeclaration);
+      renameAll(ast, realLegacyName, name);
     } else {
       const importDeclaration = createImportDeclWithProp(
         realNewSource,
@@ -146,8 +147,6 @@ export const replaceLegacy = (
 
       legacyImportDeclarations.at(-1)?.insertBefore(importDeclaration);
     }
-
-    renameAll(ast, realLegacyName, name);
   };
 
   perform();
