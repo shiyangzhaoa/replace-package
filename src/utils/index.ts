@@ -1,0 +1,1 @@
+export const clearInvalidSuffix = (val: string) => val.replaceAll(/\.tsx?$/g, '');

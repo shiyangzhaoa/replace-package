@@ -1,0 +1,10 @@
+{
+  "replace-package": {
+    "legacyName": "classnames",
+    "legacySource": "classnames",
+    "legacyImportDefault": false,
+    "name": "clsx",
+    "source": "clsx",
+    "importDefault": true
+  }
+}
