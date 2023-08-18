@@ -76,7 +76,7 @@ step 2: change config
 step 3: transform
 
 ```shell
-npx replace-package@latest src/**/*.tsx
+npx replace-package@latest src/**/*.(ts|tsx)
 ```
 
 > It will check your git directory is clean, you can use '--force' to skip the check.
