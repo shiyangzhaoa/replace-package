@@ -2,7 +2,7 @@ import path from 'path';
 
 const defineTest = require('jscodeshift/dist/testUtils').defineTest;
 
-const tests = ['not-match-default', 'not-match-props', 'name-import', 'base-import'];
+const tests = ['base-import', 'not-match-default', 'not-match-props', 'name-import', 'import-other'];
 
 describe('replace-package', () => {
   tests.forEach((test) =>

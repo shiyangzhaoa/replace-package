@@ -4,14 +4,14 @@ import findUp from 'find-up';
 import { readJson } from './utils/file';
 
 export const defaultConfig: Config = {
-  'replace-package': {
-    name: '',
-    source: '',
-    importDefault: false,
+  'replace-package': [{
     legacyName: '',
     legacySource: '',
     legacyImportDefault: false,
-  }
+    name: '',
+    source: '',
+    importDefault: false,
+  }]
 };
 
 let config: Config | null = null;
@@ -41,5 +41,5 @@ export interface Config {
     name: string;
     source: string;
     importDefault?: boolean;
-  }
+  }[];
 }
