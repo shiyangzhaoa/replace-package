@@ -47,14 +47,14 @@ codemod.json
 
 ```json
 {
-  "replace-package": {
+  "replace-package": [{
     "name": "",
     "source": "",
     "importDefault": false,
     "legacyName": "",
     "legacySource": "",
     "legacyImportDefault": false,
-  }
+  }]
 }
 ```
 
@@ -62,14 +62,14 @@ step 2: change config
 
 ```json
 {
-  "replace-package": {
+  "replace-package": [{
     "name": "clsx",
     "source": "clsx",
     "importDefault": true,
     "legacyName": "classnames",
     "legacySource": "classnames",
     "legacyImportDefault": true,
-  }
+  }]
 }
 ```
 
@@ -89,14 +89,14 @@ codemod.json
 
 ```json
 {
-  "replace-package": {
+  "replace-package": [{
     "name": "Form",
     "source": "@ant-design/compatible",
     "importDefault": false,
     "legacyName": "Form",
     "legacySource": "antd",
     "legacyImportDefault": false
-  }
+  }]
 }
 ```
 <img width="1050" alt="image" src="https://github.com/shiyangzhaoa/replace-package/assets/19943129/5179f436-4827-4978-92f9-8e4a69d4faad">
@@ -106,14 +106,14 @@ by path(VSCode copy path)
 
 ```json
 {
-  "replace-package": {
+  "replace-package": [{
     "name": "Form",
     "source": "/Users/xx/workspace/xx/src/components/Form",
     "importDefault": false,
     "legacyName": "Form",
     "legacySource": "antd",
     "legacyImportDefault": false
-  }
+  }]
 }
 ```
 <img width="1145" alt="image" src="https://github.com/shiyangzhaoa/replace-package/assets/19943129/6423aec7-4204-4531-a9af-190936eced3a">
@@ -126,14 +126,14 @@ codemod.json
 
 ```json
 {
-  "replace-package": {
+  "replace-package": [{
     "legacyName": "classnames",
     "legacySource": "classnames",
     "legacyImportDefault": true,
     "name": "clsx",
     "source": "clsx",
     "importDefault": true
-  }
+  }]
 }
 ```
 <img width="1150" alt="image" src="https://github.com/shiyangzhaoa/replace-package/assets/19943129/d393207b-ef22-416f-9a73-5619cfedf24b">
@@ -143,14 +143,14 @@ or
 
 ```json
 {
-  "replace-package": {
+  "replace-package": [{
     "legacyName": "classnames",
     "legacySource": "/Users/xx/workspace/xx/src/utils/classnames",
     "legacyImportDefault": true,
     "name": "clsx",
     "source": "clsx",
     "importDefault": true
-  }
+  }]
 }
 ```
 
@@ -170,14 +170,14 @@ codemod.json
 
 ```json
 {
-  "replace-package": {
+  "replace-package": [{
     "legacyName": "Form",
     "legacySource": "@ant-design/compatible",
     "legacyImportDefault": false,
     "name": "Form",
     "source": "antd",
     "importDefault": false
-  }
+  }]
 }
 ```
 

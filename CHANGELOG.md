@@ -2,11 +2,21 @@
 
 All notable changes to this project will be documented in this file.
 
-## 0.0.1
+## 0.0.4
 
 ### Added
 
-- 🎉 Everything
+- 🎉 multiple ruler support
+
+### Fixed
+
+- 🔧 keep import specifier unchanged
+
+## 0.0.3
+
+### Fixed
+
+- 🔧 rename only import name changed
 
 ## 0.0.2
 
@@ -14,8 +24,8 @@ All notable changes to this project will be documented in this file.
 
 - 🔧 exit after check config error
 
-## 0.0.3
+## 0.0.1
 
-### Fixed
+### Added
 
-- 🔧 rename only import name changed
+- 🎉 Everything
