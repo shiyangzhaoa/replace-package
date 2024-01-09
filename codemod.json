@@ -1,10 +1,24 @@
 {
-  "replace-package": {
+  "replace-package": [{
     "legacyName": "classnames",
     "legacySource": "classnames",
     "legacyImportDefault": false,
     "name": "clsx",
     "source": "clsx",
     "importDefault": true
-  }
+  }, {
+    "legacyName": "packageB",
+    "legacySource": "packageB",
+    "legacyImportDefault": true,
+    "name": "packageD",
+    "source": "newPackage",
+    "importDefault": false
+  }, {
+    "legacyName": "packageA",
+    "legacySource": "packageA",
+    "legacyImportDefault": true,
+    "name": "packageC",
+    "source": "newPackage",
+    "importDefault": false
+  }]
 }

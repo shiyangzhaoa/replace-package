@@ -22,9 +22,17 @@ export const renameAll = (
     .find(j.ExportDefaultSpecifier)
     .find(j.Identifier, { name: oldName });
 
+  const jsxExpressionContainers = ast
+  .find(j.JSXExpressionContainer)
+  .find(j.Identifier, { name: oldName });
+
   const identifiers = ast
     .find(j.MemberExpression, (node) => j.Identifier.check(node.object))
     .find(j.Identifier, { name: oldName });
+
+  const variableDeclarator = ast
+  .find(j.VariableDeclarator)
+  .find(j.Identifier, { name: oldName });
 
   const typeRef = ast
     .find(j.TSTypeReference)
@@ -33,6 +41,8 @@ export const renameAll = (
   [
     ...exportSpecifiers.paths(),
     ...exportDefaultSpecifiers.paths(),
+    ...jsxExpressionContainers.paths(),
+    ...variableDeclarator.paths(),
     ...identifiers.paths(),
     ...typeRef.paths(),
   ].forEach((path: core.ASTPath) => {

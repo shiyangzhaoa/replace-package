@@ -5,7 +5,6 @@ import { isMatch } from 'matcher';
 
 import { j } from './jscodeshift';
 import { error } from './utils/logger';
-import { getConfig } from './config';
 import { isAllValid } from './utils/validate';
 import {
   createImportDeclWithDefault,
@@ -17,37 +16,40 @@ import {
 import { clearInvalidSuffix } from './utils';
 import { getCompletionEntries } from './utils/file';
 
-const {
-  legacyName,
-  legacySource,
-  legacyImportDefault,
-  name,
-  source,
-  importDefault,
-} = getConfig('replace-package');
+import type { Config } from './config';
+
+type ReplaceConfig = Config['replace-package'][0];
 
 export const replaceLegacy = (
   ast: core.Collection<unknown>,
   filePath: string,
+  config: ReplaceConfig,
 ) => {
-  if (!checkConfigIsValid()) return;
+  const {
+    legacySource,
+    name,
+    source,
+    importDefault,
+  } = config;
+
+  if (!checkConfigIsValid(config)) return;
 
   const dir = path.dirname(filePath);
   const getValidPath = getCompletionEntries(dir);
 
   const findImportDeclarations = (source: string) => {
     return ast.find(j.ImportDeclaration, (node) => {
-      if (!j.StringLiteral.check(node.source)) {
+      if (!j.Literal.check(node.source)) {
         return false;
       }
 
       try {
         fs.accessSync(source);
-        const absolutePath = getValidPath(node.source.value);
+        const absolutePath = getValidPath(String(node.source.value));
 
         return absolutePath === clearInvalidSuffix(source);
       } catch {
-        return isMatch(node.source.value, source);
+        return isMatch(String(node.source.value), source);
       }
     });
   };
@@ -64,6 +66,7 @@ export const replaceLegacy = (
     ).size() !== 0;
     const realLegacyName = resolveLegacyPackage(
       legacyImportDeclarations,
+      config,
     );
 
     if (!realLegacyName) return;
@@ -104,12 +107,12 @@ export const replaceLegacy = (
         if (newNameImportSpecifier.size() === 0) {
           newImportDeclarations
             .nodes()[0]
-            .specifiers?.push(j.importSpecifier(j.identifier(name)));
-          renameAll(ast, realLegacyName, name);
+            .specifiers?.push(j.importSpecifier(j.identifier(name), j.identifier(realLegacyName)));
         } else {
           const nameImportSpecifier = newNameImportSpecifier.at(0).nodes()[0];
 
           const { imported, local } = nameImportSpecifier;
+
           if (local && local.name !== imported.name) {
             renameAll(ast, realLegacyName, local.name);
           } else {
@@ -156,7 +159,10 @@ export const replaceLegacy = (
 
 const resolveLegacyPackage = (
   legacyImportDeclarations: core.Collection<core.ImportDeclaration>,
+  config: ReplaceConfig,
 ) => {
+  const { legacyImportDefault, legacyName } = config;
+
   let realLegacyName = '';
   // import React from 'react';
   const importDefaultSpecifiers = legacyImportDeclarations.find(
@@ -224,7 +230,9 @@ const resolveLegacyPackage = (
   return realLegacyName;
 };
 
-const checkConfigIsValid = () => {
+const checkConfigIsValid = (config: ReplaceConfig) => {
+  const { source, name, legacyImportDefault, legacyName, legacySource } = config;
+
   let isValid = false;
   let errMsg = '';
 
